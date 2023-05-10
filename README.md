@@ -11,7 +11,9 @@ Na segunda etapa, construí as interfaces onde você pode visualizar os produtos
 
 - 3ª etapa:
 Na terceira etapa, concentrou-se a maior parte da lógica, onde consegui unir as duas etapas anteriores e criar um código funcional.
-  
+- 4ª etapa  
+Na quarta etapa, desenvolvi um arquivo.txt de banco de dados para armazenar os registros alterados no Codigo Principal
+
 # Codigo Principal
 No código principal, o usuário pode escolher entre 9 itens e comprá-los, escolhendo se deseja trocar o item ou não. Na hora do pagamento, o usuário pode escolher se deseja receber troco ou comprar outro produto completando o valor.
 
