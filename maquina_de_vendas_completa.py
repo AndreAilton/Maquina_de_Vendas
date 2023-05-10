@@ -7,10 +7,25 @@ Original file is located at
     https://colab.research.google.com/drive/1SCGil5q__cBXEU8eNwWn2fe2-BnGGaBx
 """
 
-itens = [" ","Chocolate","Refrigerante","Salgadinho", "Bolacha", "Agua", "Balas", "Sorvete", "Chiclete", "Caramelo"]
-ValorItem = ["ValorItem",3.50,2,4, 3, 1, 2, 11.50, 0.20, 10.0,12345]
-QItem = ["QuantItem",10,10,10,10,10,10,10,10,10]
+#=============BANCO DE DADOS============================
+Lista =  open('Banco de dados.txt','r')
+Linhas= Lista.readlines()
 
+for c in Linhas:     
+    if c[2] == 'V':
+       c = c.replace(' ', '')
+       ValorItem = eval(c)
+        
+    elif c[2] == 'Q':
+       c = c.replace(' ', '')
+       QItem = eval(c)
+    elif c[2] == 'L':
+       c = c.replace(' ', '')
+       Lucro = eval(c)
+    else:
+       c = c.replace(' ', '')
+       itens = eval(c)
+#=============BANCO DE DADOS============================
 #VARIAVEIS DECLARADADS
 confirmo="S"
 confirm ="S"
@@ -82,7 +97,7 @@ def Escolha():
   confirm = "S"
   while confirm == "S":
     Nitem1 = int(input("O item desejado "))
-    if Nitem1 <10:
+    if Nitem1 <10 :
       Nitem = Nitem1
       if QItem[Nitem] == 0:
         confirm = str(input("Produto indisponivel Quer Escolher outro S/N \n---->" ))
@@ -122,7 +137,7 @@ def Saldo():
 #============================CODIGO PRINCIPAL===========================
 while (confirm=="S") or (confirmo1 == "S"):
   tabelaitens()
-  Nitem = Escolha() #estavel
+  Nitem = Escolha()
   if Nitem == 0:
     confirm = "N"
     confirmo1 = "N"
@@ -139,8 +154,9 @@ while (confirm=="S") or (confirmo1 == "S"):
           print(itens[Nitem],"possui",QItem[Nitem],"no estoque")
           confirmo = input("Deseja Continuar S/N")
           confirmo = confirmo.upper()
+          confirm = confirmo
         elif Nitem == 2:
-          print("Foram feitas {} Vendas \nrecebemos {}$ Reais no total".format(Vendas,Dinheiro1))
+          print("Foram feitas {} Vendas \nrecebemos {}$ Reais no total".format(Lucro[1],Lucro[2]))
         elif Nitem == 0:
           tabelaitens()
           Nitem = Escolhaestoque()
@@ -149,21 +165,28 @@ while (confirm=="S") or (confirmo1 == "S"):
           print(ValorItem[Nitem])
           confirmo = input("Deseja Continuar S/N")
           confirmo = confirmo.upper()
+          confirm = confirmo
+  
         elif Nitem == 3:
           confirm = "S"
           confirm = confirm.upper()
           confirmo = "S"
-          break     
     else:
       if confirmo == "N":
+        Lista =  open('Banco de dados.txt','w')
+        Lista.write('{}\n{}\n{}\n{}'.format(itens,ValorItem,QItem,Lucro))
         pass
       else:
-        saldo = Saldo() #estavel
+        saldo = Saldo()
         QItem[Nitem] += -1
-        Vendas += 1
-        Dinheiro1 += ValorItem[Nitem]
+        Lucro[1] += 1
+        Lucro[2] += ValorItem[Nitem]
         print("Compra feita com sucesso")
         confirmo1 = (input("seu saldo atual e de {} escolher outro produto S/N -->".format(saldo)))
         confirmo1 = confirmo1.upper()
         confirm = "N"
+        Lista =  open('Banco de dados.txt','w')
+        Lista.write('{}\n{}\n{}\n{}'.format(itens,ValorItem,QItem,Lucro))
   print("seu troco e de",saldo,"$ reais")
+  Lista =  open('Banco de dados.txt','w')
+  Lista.write('{}\n{}\n{}\n{}'.format(itens,ValorItem,QItem,Lucro))
