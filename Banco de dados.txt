@@ -1,0 +1,4 @@
+[' ', 'Chocolate', 'Refrigerante', 'Salgadinho', 'Bolacha', 'Agua', 'Balas', 'Sorvete', 'Chiclete', 'Caramelo']
+['ValorItem', 5.5, 2, 4, 3, 1, 2, 11.5, 0.5, 10.0, 12345]
+['QuantItem', 10, 10, 10, 10, 10, 10, 10, 10, 10]
+['Lucro',0, 0]
